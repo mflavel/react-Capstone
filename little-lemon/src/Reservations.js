@@ -1,4 +1,12 @@
-const Reservations = () => {
-    return(<div>Res</div>)
-}
-export default Reservations;
+import BookingForm from "./pages/BookingForm";
+
+
+const Reservation = () => {
+    return (
+        <>
+            <BookingForm />
+        </>
+    );
+};
+
+export default Reservation;

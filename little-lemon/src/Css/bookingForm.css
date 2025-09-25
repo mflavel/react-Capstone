@@ -1,0 +1,63 @@
+/* Booking form layout */
+.booking-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* centers heading and form horizontally */
+  background-color: #FBDABB;
+}
+
+/* force inputs & selects to keep white background */
+.booking-container input,
+.booking-container select,
+.booking-container textarea,
+.booking-container .chakra-input,
+.booking-container .chakra-select__wrapper {
+  background-color: #ffffff; /* white inputs */
+  color: #000;               /* keep text readable */
+  border-radius: 6px;
+}
+
+/* placeholder color — make placeholders appear black like other text */
+.booking-container input::placeholder,
+.booking-container select::placeholder,
+.booking-container textarea::placeholder {
+  color: #000 !important;
+  opacity: 1; /* ensure consistent visibility across browsers */
+}
+
+.booking-page {
+  width: 100%;
+  display: grid;
+  gap: 8px;
+  background: transparent;
+  display: flex;
+  align-items: center;     /* vertical centering */
+}
+
+/* keep form a reasonable width */
+.booking-page form {
+  width: 100%;
+  max-width: 420px; /* change width as needed */
+}
+
+/* conformation styles */
+.conformation-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* centers heading and form horizontally */;
+}
+
+.confirmation-details button{
+    background-color: #f4ce14;
+    padding: 10px;
+    font-size: 25px;
+}
+
+.conformation-page h2{
+    font-size:30px;
+}
+
+.conformation-page p{
+    font-size:25px;
+    padding-bottom: 10px;
+}
