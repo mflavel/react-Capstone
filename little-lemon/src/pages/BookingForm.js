@@ -1,7 +1,5 @@
 import { useState, useEffect } from "react";
-import { Input, Select, Button } from "@chakra-ui/react";
 import * as Yup from 'yup';
-import { useNavigate } from 'react-router-dom';
 import '../Css/bookingForm.css';
 import { useFormik } from "formik";
 
@@ -87,7 +85,6 @@ const BookingForm = () => {
 
 
     const [clicked, setClicked] = useState(false);
-    const navigate = useNavigate();
     const [showConfirm, setShowConfirm] = useState(false);
     const [pendingPayload, setPendingPayload] = useState(null);
 
@@ -112,12 +109,12 @@ const BookingForm = () => {
 
 
     //confermation dialog functions for confirming
-    const confirmReservation = () => {
-        if (!pendingPayload) return;
-        console.log('Reservation submitted:', pendingPayload);
-        setShowConfirm(false);
-        navigate('/conformation', { state: pendingPayload });
-    };
+   const confirmReservation = () => {
+    if (!pendingPayload) return;
+    console.log('Reservation submitted:', pendingPayload);
+    setShowConfirm(false);
+    alert('Reservation confirmed!'); // or handle submission differently
+};
 
     //confermation dialog functions for cancelling
     const cancelReservation = () => {
@@ -140,7 +137,7 @@ const BookingForm = () => {
             <h1 style={{ textAlign: 'center', margin: '1rem 0', fontSize: '20px' }}><b>Reserve a Table</b></h1>
             <form className="booking-page" onSubmit={formik.handleSubmit} style={{ display: 'grid', maxWidth: '400px', gap: '8px' }}>
                 <label htmlFor="res-date">Choose date</label>
-                <Input
+                <input
                     className="input-booking"
                     type="date"
                     id="date"
@@ -152,54 +149,101 @@ const BookingForm = () => {
                 {formik.touched.date && formik.errors.date && <div style={{ color: 'red', fontSize: '12px' }}>{formik.errors.date}</div>}
 
                 <label htmlFor="res-time">Choose time</label>
-                <Select
+                <select
                     className="input-booking"
                     id="time"
                     name="time"
-                    placeholder="Select time"
                     value={formik.values.time}
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                 >
+                    <option value="">Select time</option>
                     {availableTimes.map((timeOption) => (
                         <option key={timeOption} value={timeOption}>{timeOption}</option>
                     ))}
-                </Select>
+                </select>
                 {formik.touched.time && formik.errors.time && <div style={{ color: 'red', fontSize: '12px' }}>{formik.errors.time}</div>}
 
                 <label htmlFor="guests">Number of guests</label>
-                <Input className="input-booking" type="number" placeholder="1" min="1" max="10" id="guests" name="guests" value={formik.values.guests} onChange={formik.handleChange} onBlur={formik.handleBlur} />
+                <input
+                    className="input-booking"
+                    type="number"
+                    placeholder="1"
+                    min="1"
+                    max="10"
+                    id="guests"
+                    name="guests"
+                    value={formik.values.guests}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                />
                 {formik.touched.guests && formik.errors.guests && <div style={{ color: 'red', fontSize: '12px' }}>{formik.errors.guests}</div>}
 
                 <label htmlFor="occasion">Occasion</label>
-                <Select className="input-booking" id="occasion" name="occasion" value={formik.values.occasion} onChange={formik.handleChange} onBlur={formik.handleBlur}>
+                <select
+                    className="input-booking"
+                    id="occasion"
+                    name="occasion"
+                    value={formik.values.occasion}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                >
                     {partyOccasion.map((partyOption) => (
                         <option key={partyOption} value={partyOption}>{partyOption}</option>
                     ))}
-                </Select>
+                </select>
                 {formik.touched.occasion && formik.errors.occasion && <div style={{ color: 'red', fontSize: '12px' }}>{formik.errors.occasion}</div>}
 
                 <label htmlFor="Name">Name</label>
-                <Input className="input-booking" type="text" id="name" name="name" placeholder="Your Name" value={formik.values.name} onChange={formik.handleChange} onBlur={formik.handleBlur} />
+                <input
+                    className="input-booking"
+                    type="text"
+                    id="name"
+                    name="name"
+                    placeholder="Your Name"
+                    value={formik.values.name}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                />
                 {formik.touched.name && formik.errors.name && <div style={{ color: 'red', fontSize: '12px' }}>{formik.errors.name}</div>}
 
                 <label htmlFor="Email">Email</label>
-                <Input className="input-booking" type="email" id="email" name="email" placeholder="Your Email" value={formik.values.email} onChange={formik.handleChange} onBlur={formik.handleBlur} />
+                <input
+                    className="input-booking"
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="Your Email"
+                    value={formik.values.email}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                />
                 {formik.touched.email && formik.errors.email && <div style={{ color: 'red', fontSize: '12px' }}>{formik.errors.email}</div>}
 
                 <label htmlFor="Phone">Phone Number</label>
-                <Input className="input-booking" type="tel" id="phone" name="phone" placeholder="Your Phone Number" value={formik.values.phone} onChange={formik.handleChange} onBlur={formik.handleBlur} />
+                <input
+                    className="input-booking"
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    placeholder="Your Phone Number"
+                    value={formik.values.phone}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                />
                 {formik.touched.phone && formik.errors.phone && <div style={{ color: 'red', fontSize: '12px' }}>{formik.errors.phone}</div>}
-                <Button
+
+                <button
                     type="submit"
                     style={buttonStyle}
                     onClick={() => {
                         setClicked(true);
                         setTimeout(() => setClicked(false), 200);
                     }}
-                >Make Your reservation</Button>
+                >
+                    Make Your reservation
+                </button>
             </form>
-
             {/* conformation pop up */}
             {showConfirm && (
                 <div style={{

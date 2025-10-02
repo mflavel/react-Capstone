@@ -1,4 +1,4 @@
-import './App.css';
+import { useState } from 'react';
 import Header from './Header';
 import Nav from './Nav';
 import Footer from './Footer';
@@ -9,27 +9,36 @@ import Reservations from './Reservations';
 import OrderOnline from './OrderOnline';
 import Login from './Login';
 import Conformation from './pages/Conformation';
-import { Routes, Route } from 'react-router-dom';
 
 function App() {
+  const [currentPage, setCurrentPage] = useState('main'); // track current page
+
+  // render page based on currentPage
+  const renderPage = () => {
+    switch (currentPage) {
+      case 'about': return <About setCurrentPage={setCurrentPage} />;
+      case 'menu': return <Menu setCurrentPage={setCurrentPage} />;
+      case 'reservations': return <Reservations setCurrentPage={setCurrentPage} />;
+      case 'order-online': return <OrderOnline setCurrentPage={setCurrentPage} />;
+      case 'login': return <Login setCurrentPage={setCurrentPage} />;
+      case 'conformation': return <Conformation setCurrentPage={setCurrentPage} />;
+      default: return <Main setCurrentPage={setCurrentPage} />;
+    }
+  };
+
   return (
     <>
-        <Header />
-        <Nav />
-        <Routes>
-          <Route path="/" element={<Main />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/menu" element={<Menu />} />
-          <Route path="/reservations" element={<Reservations />} />
-          <Route path="/conformation" element={<Conformation />} />
-          <Route path="/order-online" element={<OrderOnline />} />
-          <Route path="/login" element={<Login />} />
-        </Routes>
-        <Footer />
+      <Header />
+      <Nav setCurrentPage={setCurrentPage} /> {/* Pass setter to Nav */}
+      <div className="page-content">
+        {renderPage()}
+      </div>
+      <Footer />
     </>
   );
 }
 
 export default App;
+
 
 
