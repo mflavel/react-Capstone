@@ -1,8 +1,10 @@
 // 👇 must be before importing Conformation
 
-import { render, screen } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import Main from "./Main";
+
+
 
 describe("Main component", () => {
   test("renders hero section with title and button", () => {
@@ -49,5 +51,4 @@ describe("Main component", () => {
 
   });
 });
-
 

@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
+import { FormLabel, Input, Select, Button } from "@chakra-ui/react";
 import * as Yup from 'yup';
+import { useNavigate } from 'react-router-dom';
 import '../Css/bookingForm.css';
 import { useFormik } from "formik";
 
@@ -15,6 +17,7 @@ const BookingForm = () => {
     };
 
     const initialDate = getTodaysDate();
+    const navigate = useNavigate();
 
     // availableTimes is loaded via fetchData so it can vary by date
     const [availableTimes, setAvailableTimes] = useState([]);
@@ -110,11 +113,11 @@ const BookingForm = () => {
 
     //confermation dialog functions for confirming
    const confirmReservation = () => {
-    if (!pendingPayload) return;
-    console.log('Reservation submitted:', pendingPayload);
-    setShowConfirm(false);
-    alert('Reservation confirmed!'); // or handle submission differently
-};
+        if (!pendingPayload) return;
+        console.log('Reservation submitted:', pendingPayload);
+        setShowConfirm(false);
+        navigate('/conformation', { state: pendingPayload });
+    };
 
     //confermation dialog functions for cancelling
     const cancelReservation = () => {
@@ -136,8 +139,8 @@ const BookingForm = () => {
         <div className="booking-container" >
             <h1 style={{ textAlign: 'center', margin: '1rem 0', fontSize: '20px' }}><b>Reserve a Table</b></h1>
             <form className="booking-page" onSubmit={formik.handleSubmit} style={{ display: 'grid', maxWidth: '400px', gap: '8px' }}>
-                <label htmlFor="res-date">Choose date</label>
-                <input
+                <FormLabel htmlFor="res-date">Choose date</FormLabel>
+                <Input
                     className="input-booking"
                     type="date"
                     id="date"
@@ -148,24 +151,24 @@ const BookingForm = () => {
                 />
                 {formik.touched.date && formik.errors.date && <div style={{ color: 'red', fontSize: '12px' }}>{formik.errors.date}</div>}
 
-                <label htmlFor="res-time">Choose time</label>
-                <select
+                <FormLabel htmlFor="res-time">Choose time</FormLabel>
+                <Select
                     className="input-booking"
                     id="time"
                     name="time"
+                    placeholder="Select time"
                     value={formik.values.time}
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                 >
-                    <option value="">Select time</option>
                     {availableTimes.map((timeOption) => (
                         <option key={timeOption} value={timeOption}>{timeOption}</option>
                     ))}
-                </select>
+                </Select>
                 {formik.touched.time && formik.errors.time && <div style={{ color: 'red', fontSize: '12px' }}>{formik.errors.time}</div>}
 
-                <label htmlFor="guests">Number of guests</label>
-                <input
+                <FormLabel htmlFor="guests">Number of guests</FormLabel>
+                <Input
                     className="input-booking"
                     type="number"
                     placeholder="1"
@@ -179,8 +182,8 @@ const BookingForm = () => {
                 />
                 {formik.touched.guests && formik.errors.guests && <div style={{ color: 'red', fontSize: '12px' }}>{formik.errors.guests}</div>}
 
-                <label htmlFor="occasion">Occasion</label>
-                <select
+                <FormLabel htmlFor="occasion">Occasion</FormLabel>
+                <Select
                     className="input-booking"
                     id="occasion"
                     name="occasion"
@@ -191,11 +194,11 @@ const BookingForm = () => {
                     {partyOccasion.map((partyOption) => (
                         <option key={partyOption} value={partyOption}>{partyOption}</option>
                     ))}
-                </select>
+                </Select>
                 {formik.touched.occasion && formik.errors.occasion && <div style={{ color: 'red', fontSize: '12px' }}>{formik.errors.occasion}</div>}
 
-                <label htmlFor="Name">Name</label>
-                <input
+                <FormLabel htmlFor="Name">Name</FormLabel>
+                <Input
                     className="input-booking"
                     type="text"
                     id="name"
@@ -207,8 +210,8 @@ const BookingForm = () => {
                 />
                 {formik.touched.name && formik.errors.name && <div style={{ color: 'red', fontSize: '12px' }}>{formik.errors.name}</div>}
 
-                <label htmlFor="Email">Email</label>
-                <input
+                <FormLabel htmlFor="Email">Email</FormLabel>
+                <Input
                     className="input-booking"
                     type="email"
                     id="email"
@@ -220,8 +223,8 @@ const BookingForm = () => {
                 />
                 {formik.touched.email && formik.errors.email && <div style={{ color: 'red', fontSize: '12px' }}>{formik.errors.email}</div>}
 
-                <label htmlFor="Phone">Phone Number</label>
-                <input
+                <FormLabel htmlFor="Phone">Phone Number</FormLabel>
+                <Input
                     className="input-booking"
                     type="tel"
                     id="phone"
@@ -233,18 +236,16 @@ const BookingForm = () => {
                 />
                 {formik.touched.phone && formik.errors.phone && <div style={{ color: 'red', fontSize: '12px' }}>{formik.errors.phone}</div>}
 
-                <button
+                <Button
                     type="submit"
                     style={buttonStyle}
                     onClick={() => {
                         setClicked(true);
                         setTimeout(() => setClicked(false), 200);
                     }}
-                >
-                    Make Your reservation
-                </button>
+                >Make Your reservation</Button>
             </form>
-            {/* conformation pop up */}
+                       {/* conformation pop up */}
             {showConfirm && (
                 <div style={{
                     position: 'fixed',

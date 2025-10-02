@@ -1,11 +1,12 @@
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import {Button} from '@chakra-ui/react'
 import '../Css/bookingForm.css';
 
 const Conformation = () => {
     const { state } = useLocation();
     const { date, time, guests, occasion,name, email, phone} = state || {};
-
+    const navigate = useNavigate();
+    
     return (
         <div className='conformation-page'>
             <h2>Reservation Confirmed</h2>
@@ -19,7 +20,7 @@ const Conformation = () => {
                     <p><strong>Name:</strong> {name}</p>
                     <p><strong>Email:</strong> {email}</p>
                     <p><strong>Phone:</strong> {phone}</p>
-                    <Button onClick={() => window.location.href = '/'}>Back to Home</Button>
+                    <Button onClick={() => navigate("/")}>Back to Home</Button>
                 </div>
             ) : (
                 <p>No reservation details were provided.</p>
