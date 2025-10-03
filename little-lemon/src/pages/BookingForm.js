@@ -75,6 +75,7 @@ const BookingForm = () => {
                 }
                 return null;
             })
+            //error message for invalid infomation
             .typeError('Invalid date')
             .required('Required')
             .min(minDate, 'Date cannot be in the past'),
@@ -136,9 +137,12 @@ const BookingForm = () => {
     };
 
     return (
+        // booking form
         <div className="booking-container" >
             <h1 style={{ textAlign: 'center', margin: '1rem 0', fontSize: '20px' }}><b>Reserve a Table</b></h1>
             <form className="booking-page" onSubmit={formik.handleSubmit} style={{ display: 'grid', maxWidth: '400px', gap: '8px' }}>
+                
+                {/* Date input */}
                 <FormLabel htmlFor="res-date">Choose date</FormLabel>
                 <Input
                     className="input-booking"
@@ -149,8 +153,10 @@ const BookingForm = () => {
                     onChange={(e) => { formik.handleChange(e); refreshTimesForDate(e.target.value, formik.setFieldValue); }}
                     onBlur={formik.handleBlur}
                 />
+                {/* error message */}
                 {formik.touched.date && formik.errors.date && <div style={{ color: 'red', fontSize: '12px' }}>{formik.errors.date}</div>}
 
+                {/* Time select */}
                 <FormLabel htmlFor="res-time">Choose time</FormLabel>
                 <Select
                     className="input-booking"
@@ -165,8 +171,10 @@ const BookingForm = () => {
                         <option key={timeOption} value={timeOption}>{timeOption}</option>
                     ))}
                 </Select>
+                {/* error message */}
                 {formik.touched.time && formik.errors.time && <div style={{ color: 'red', fontSize: '12px' }}>{formik.errors.time}</div>}
 
+                {/* Number of guests input */}
                 <FormLabel htmlFor="guests">Number of guests</FormLabel>
                 <Input
                     className="input-booking"
@@ -180,8 +188,10 @@ const BookingForm = () => {
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                 />
+                {/* error message */}
                 {formik.touched.guests && formik.errors.guests && <div style={{ color: 'red', fontSize: '12px' }}>{formik.errors.guests}</div>}
 
+                {/* Occasion select */}
                 <FormLabel htmlFor="occasion">Occasion</FormLabel>
                 <Select
                     className="input-booking"
@@ -195,8 +205,10 @@ const BookingForm = () => {
                         <option key={partyOption} value={partyOption}>{partyOption}</option>
                     ))}
                 </Select>
+                {/* error message */}
                 {formik.touched.occasion && formik.errors.occasion && <div style={{ color: 'red', fontSize: '12px' }}>{formik.errors.occasion}</div>}
 
+                {/* Contact information inputs */}
                 <FormLabel htmlFor="Name">Name</FormLabel>
                 <Input
                     className="input-booking"
@@ -208,8 +220,10 @@ const BookingForm = () => {
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                 />
+                {/* error message */}
                 {formik.touched.name && formik.errors.name && <div style={{ color: 'red', fontSize: '12px' }}>{formik.errors.name}</div>}
 
+                {/* Email input */}
                 <FormLabel htmlFor="Email">Email</FormLabel>
                 <Input
                     className="input-booking"
@@ -221,8 +235,10 @@ const BookingForm = () => {
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                 />
+                {/* error message */}
                 {formik.touched.email && formik.errors.email && <div style={{ color: 'red', fontSize: '12px' }}>{formik.errors.email}</div>}
 
+                {/* Phone input */}
                 <FormLabel htmlFor="Phone">Phone Number</FormLabel>
                 <Input
                     className="input-booking"
@@ -234,6 +250,7 @@ const BookingForm = () => {
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                 />
+                {/* error message */}
                 {formik.touched.phone && formik.errors.phone && <div style={{ color: 'red', fontSize: '12px' }}>{formik.errors.phone}</div>}
 
                 <Button

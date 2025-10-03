@@ -9,6 +9,7 @@ const Conformation = () => {
     
     return (
         <div className='conformation-page'>
+            {/* conformation infomation page */}
             <h2>Reservation Confirmed</h2>
             <p>Thank you — your reservation has been received.</p>
             {state ? (
@@ -23,6 +24,7 @@ const Conformation = () => {
                     <Button onClick={() => navigate("/")}>Back to Home</Button>
                 </div>
             ) : (
+                /* message if no infomation was given */
                 <p>No reservation details were provided.</p>
             )}
         </div>

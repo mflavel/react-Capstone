@@ -9,7 +9,8 @@ const Nav = () => {
     <nav className="Nav">
       <div className="site-inner">
         <img src={logo} alt="Logo" />
-        <div className="nav-links">
+        <div className="nav-links"> 
+          {/* Links for navigation bar */}
           <Link to="/" className={location.pathname === "/" ? "active" : ""}>Home</Link>
           <Link to="/about" className={location.pathname === "/about" ? "active" : ""}>About</Link>
           <Link to="/menu" className={location.pathname === "/menu" ? "active" : ""}>Menu</Link>

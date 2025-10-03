@@ -22,6 +22,7 @@ const Main = () => {
                     </div>
                 </div>
             </div>
+            {/* Menu Specials */}
             <HStack justifyContent="space-between" alignItems="center" padding="1rem 5rem" margin="2rem 0">
                 <h1 className="specials-title"><b>This Week Specials!</b></h1>
                 <Link to="/menu"><button className="reserve-btn"><b>Online Menu</b></button></Link>

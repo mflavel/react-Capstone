@@ -21,6 +21,7 @@ function App() {
        <ChakraProvider>
         <Header />
         <Nav />
+        {/* routes to each link */}
         <Routes>
             <Route path="/" element={<Main />} />
             <Route path="/about" element={<About />} />
