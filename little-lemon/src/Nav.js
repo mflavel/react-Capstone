@@ -1,5 +1,4 @@
 import logo from "./images/Logo .svg";
-import React from "react";
 import { Link, useLocation } from "react-router-dom";
 
 const Nav = () => {
@@ -9,7 +8,7 @@ const Nav = () => {
     <nav className="Nav">
       <div className="site-inner">
         <img src={logo} alt="Logo" />
-        <div className="nav-links"> 
+        <div className="nav-links">
           {/* Links for navigation bar */}
           <Link to="/" className={location.pathname === "/" ? "active" : ""}>Home</Link>
           <Link to="/about" className={location.pathname === "/about" ? "active" : ""}>About</Link>
