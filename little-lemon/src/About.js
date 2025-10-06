@@ -1,10 +1,18 @@
-import { HStack } from "@chakra-ui/react";
+import { HStack, Box, Image } from "@chakra-ui/react";
+import MarioAdiranb from "./images/Mario and Adrian b.jpg";
+import MarioAndiranA from "./images/Mario and Adrian A.jpg";  
 
 const About = () => {
   return (
     <section className="about-us" id="about-section">
-      <HStack className="about-us-inner" justifyContent="space-between">
-        <div className="about-us-text">
+      <HStack
+        className="about-us-inner"
+        justifyContent="space-between"
+        alignItems="center"     // ✅ centers vertically
+        spacing={10}
+        px={12}                 // optional: adds left/right padding
+      >
+        <Box className="about-us-text" width="66%"  maxW="50%" padding={4}>
           <h1 id="about-title">About Us</h1>
           <p>
             Welcome to Little Lemon, where we bring the flavors of the
@@ -17,13 +25,44 @@ const About = () => {
             Come dine with us and experience the taste of the Mediterranean in a
             warm and inviting atmosphere.
           </p>
-        </div>
-        <div className="about-us-image">
-          <img
-            src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80"
-            alt="About Us"
+        </Box>
+        <Box position="relative"
+          flex="0 0 33%"                  // take ~1/3 of the width on larger screens
+          minW="240px"
+          minH={{ base: "260px", md: "360px", lg: "420px" }} // explicit height so top % works
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+         >
+          {/* Base image */}
+          <Image src={MarioAndiranA}
+            alt="Restaurant interior"
+            borderRadius="sm"
+            boxShadow="md"
+            id="about-image1"
+            position="absolute"
+            top="30%"              // 1/4 down from container top
+            left="15%"              // small left inset
+            width="84%"            // fit within container
+            maxH="70%"             // prevents it from overflowing vertically
+            objectFit="cover"
+            zIndex={1}
+            />
+  {/* Top overlapping image */}
+          <Image
+            src={MarioAdiranb}
+            alt="Chef preparing food"
+            borderRadius="sm"
+            boxShadow="lg"
+            position="absolute"
+            top="10%"               // sits higher than the base image
+            right="50%"             // small inset from container right edge
+            width="56%"
+            maxH="65%"
+            objectFit="cover"
+            zIndex={2}
           />
-        </div>
+        </Box>
       </HStack>
     </section>
   );
