@@ -16,6 +16,18 @@
   border-radius: 6px;
 }
 
+.link-button{
+  grid-column: 1 / 4;
+  grid-row: 1 / 2;
+  padding: 0.20rem .5rem;
+  font: inherit;
+}
+
+.link-button:hover{
+  background-color: #f4ce14;
+  border-radius: 6px;
+}
+
 .Nav .site-inner {
   display: flex;
   align-items: center;
@@ -50,6 +62,10 @@
   color: white;
   border-radius: 6px;
   padding: 0.25rem 0.6rem;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 @media (max-width: 600px) {
@@ -173,6 +189,50 @@ button {
   .specials-grid {
     grid-template-columns: 1fr;
   }
+}
+
+.testimonials{
+  background-color: #FBDABB;
+}
+
+.testimonial-title {
+    font-size: 2rem;
+    text-align: center;
+    margin: 0 1rem;
+}
+
+.testimonial-cards{
+  margin-left: 30px;
+  margin-right: 30px;
+}
+
+.testimonial-card{
+  display: flex;
+  gap: 1rem;
+  max-width: 500px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  justify-content: center;
+  background-color: #dddcdc;
+  margin: 20px;
+  border-radius: 12px;
+
+}
+.about-us{
+    background-color: #EE9972;
+}
+
+.about-us-inner > div {
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 0 1rem;
+    gap: 1rem;
+    align-items: center;
+}
+
+#about-title {
+    font-size: 2rem;
+    text-align: center;
 }
 
 /* Specific style for the hero reserve button */

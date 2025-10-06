@@ -2,11 +2,44 @@ import restauranfood from "./images/restauranfood.jpg";
 import greaksalad from "./images/greeksalad.jpg";
 import bruchetta from "./images/bruchetta.svg";
 import lemondesser from "./images/lemondessert.jpg";
+import bear from "./images/bear avatar.png";
+import panda from "./images/panda avatar.png";
+import wolf from "./images/wolf avatar.png";
+
 import { VStack, HStack } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
+import About from "./About";
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
+
 
 
 const Main = () => {
+     const location = useLocation();
+
+   useEffect(() => {
+    console.log("Main: location changed", location);
+    // 1. prefer explicit hash in URL
+    if (location.hash) {
+      const id = location.hash.replace("#", "");
+      const el = document.getElementById(id);
+      console.log("Main: location.hash found", location.hash, "element?", !!el);
+      if (el) {
+        setTimeout(() => el.scrollIntoView({ behavior: "smooth" }), 80);
+      }
+      return;
+    }
+
+    const target = location.state?.scrollTo;
+    if (target) {
+      const el = document.getElementById(target);
+      console.log("Main: state.scrollTo ->", target, "element?", !!el);
+      if (el) {
+        setTimeout(() => el.scrollIntoView({ behavior: "smooth" }), 80);
+      }
+    }
+  }, [location.pathname, location.hash, location.state]);
+  
   return (
         <>
             <div className="hero">
@@ -61,6 +94,41 @@ const Main = () => {
                         <Link to="/order-Online"><button>Order a Delivery</button></Link>
                     </VStack>
                 </article>
+            </section>
+            <section className="testimonials">
+                <h1 className="testimonial-title">Testimonials</h1>
+                <HStack className="testimonial-cards" justifyContent="space-between">
+                    <VStack className="testimonial-card">
+                        <h3>4.5/5</h3>
+                        <HStack>
+                            <img src={bear} alt="Customer 1" width="50px" />
+                            <h3>Gavin Henry</h3>
+                        </HStack>
+                        <p>"The food was absolutely wonderful, from preparation to presentation, very pleasing."</p>
+                        <h3>- John Doe</h3>
+                    </VStack>
+                    <VStack className="testimonial-card">
+                        <h3>5/5</h3>
+                        <HStack>
+                            <img src={wolf} alt="Customer 2" width="50px"/>
+                            <h3>Lily Mcdonald</h3>
+                        </HStack>
+                        <p>"The atmosphere is amazing, and the staff is incredibly friendly and attentive."</p>
+                        <h3>- Jane Smith</h3>
+                    </VStack>
+                    <VStack className="testimonial-card">
+                        <h3>4.8/5</h3>
+                        <HStack>
+                            <img src={panda} alt="Customer 3" width="50px"/>
+                            <h3>Fred Marshal</h3>
+                        </HStack>
+                        <p>"I highly recommend this restaurant to anyone looking for a great dining experience."</p>
+                        <h3>- Mike Johnson</h3>
+                    </VStack>
+                </HStack>
+            </section>
+            <section id="about-section">
+                <About />
             </section>
 
         </>)}

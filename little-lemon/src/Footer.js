@@ -1,8 +1,10 @@
 import { HStack, VStack } from "@chakra-ui/react";
 import logo from "./images/Logo .svg";
+import { Link, useLocation } from "react-router-dom";
 
 
 const Footer = () => {
+    const location = useLocation(); // get current path
     return (
         <footer className="site-footer">
             <HStack spacing="24px" className="site-inner">
@@ -10,7 +12,9 @@ const Footer = () => {
                 <VStack>
                     <h2>Doormat Navigation</h2>
                     <a href="/">Home</a>
-                    <a href="/about">About</a>
+                     <a href="#about-section" id = "about" className={location.hash === "#about" ? "active" : ""}>
+                         About
+                        </a>
                     <a href="/menu">Menu</a>
                     <a href="/reservations">Reservations</a>
                     <a href="/order-online">Order Online</a>

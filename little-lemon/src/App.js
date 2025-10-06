@@ -3,7 +3,6 @@ import Header from './Header';
 import Nav from './Nav';
 import Footer from './Footer';
 import Main from './Main';
-import About from './About';
 import Menu from './Menu';
 import Reservations from './Reservations';
 import OrderOnline from './OrderOnline';
@@ -24,7 +23,6 @@ function App() {
         {/* routes to each link */}
         <Routes>
             <Route path="/" element={<Main />} />
-            <Route path="/about" element={<About />} />
             <Route path="/menu" element={<Menu />} />
             <Route path="/reservations" element={<Reservations />} />
             <Route path="/order-online" element={<OrderOnline />} />
