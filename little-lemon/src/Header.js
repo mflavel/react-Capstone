@@ -2,12 +2,20 @@
 
 const Header = () => {
     return(
-    <div>
-        <meta name="description" content="Little Lemon restaurant" />
-        <meta name="og:title" content="Little Lemon" />
-        <meta name="og:description" content="Little Lemon is a charming neighborhood bistro that serves simple food and classic cocktails in a lively but casual environment. We would love to hear from you!" />
-        <meta name="og:image" content="./image/Logo.svg" />
-        <title>Little Lemon</title>
-    </div>)
+    <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Little Lemon restaurant" />
+
+
+  <link rel="icon" type="image/png" href="%PUBLIC_URL%/favicon.png" />
+
+
+  <meta property="og:title" content="Little Lemon" />
+  <meta property="og:description" content="Little Lemon is a charming neighborhood bistro that serves simple food and classic cocktails in a lively but casual environment." />
+  <meta property="og:image" content="%PUBLIC_URL%/favicon.png" />
+
+  <title>Little Lemon</title>
+</head>)
 }
 export default Header;
