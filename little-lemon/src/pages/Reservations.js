@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 
 
 
+
 const Reservation = () => {
      const getTodaysDate = () => {
         const d = new Date();
@@ -98,16 +99,11 @@ const Reservation = () => {
             time: '',
             guests: 1,
             occasion: 'Birthday',
-            name: '',
-            email: '',
-            phone: ''
         },
         validationSchema,
         onSubmit: (values) => {
-            // show confirmation dialog with validated values
-            setPendingPayload(values);
-            setShowConfirm(true);
-        }
+            navigate("/BookingForm", { state: values }); // 👈 send data here
+        },
     });
 
 
@@ -144,6 +140,7 @@ const Reservation = () => {
         id="time"
         name="time"
         placeholder="Select time"
+        width="200px"
         value={formik.values.time}
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
@@ -187,6 +184,7 @@ const Reservation = () => {
         className="input-booking"
         id="occasion"
         name="occasion"
+        width="200px"
         value={formik.values.occasion}
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
@@ -203,9 +201,9 @@ const Reservation = () => {
     </div>
   </div>
 
-  <Link to="/BookingForm">
-    <button className="reserve-btn">Reserve a Table</button>
-  </Link>
+    <Button type="submit" className="reserve-button" id="button">
+        Reserve a Table
+    </Button>
 </form>
 
             </div>

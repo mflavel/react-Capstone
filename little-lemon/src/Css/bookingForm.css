@@ -1,4 +1,3 @@
-
 .booking{
   background-color:  #495e57;
   padding: 20px
@@ -11,34 +10,27 @@
   color: #000; /* black text */
   border: 1px solid #ccc;
   border-radius: 6px;
-  padding: 8px;
 }
+
+
+
 
 .booking .chakra-form__label {
   font-size: 18px !important;
   font-weight: 600; /* slightly bold */
   color: #ffffff; /* optional */
 }
-/* Each pair of fields on one row */
-.form-row {
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem; /* space between the two fields */
-  width: 100%;
-}
+
+
+
 
 /* Each field’s container */
 .form-group {
-  flex: 1;              /* each takes up equal space */
+  /* make each group a fixed column so pairs align consistently */
+  flex: 25% 0 25%;
   display: flex;
   flex-direction: column;
-  margin: 50px;
-}
-
-/* Ensure inputs/selects stretch full width */
-.form-group input,
-.form-group select {
-  width: 100%;
+  margin: 20px;
 }
 
 /* Optional: small red error text */
@@ -47,25 +39,10 @@
   font-size: 12px;
 }
 
-
-/* force inputs & selects to keep white background */
-.booking-container input,
-.booking-container select,
-.booking-container textarea,
-.booking-container .chakra-input,
-.booking-container .chakra-select__wrapper {
-  background-color: #ffffff; /* white inputs */
-  color: #000;               /* keep text readable */
-  border-radius: 6px;
+#button{
+   background-color: #f4ce14;
 }
 
-/* placeholder color — make placeholders appear black like other text */
-.booking-container input::placeholder,
-.booking-container select::placeholder,
-.booking-container textarea::placeholder {
-  color: #000 !important;
-  opacity: 1; /* ensure consistent visibility across browsers */
-}
 
 .booking-page {
   display: flex;
@@ -76,12 +53,16 @@
   width: 100%;
 }
 
-
 /* keep form a reasonable width */
 .booking-page form {
+  display: flex;
+  flex-direction: column;
   width: 100%;
-  max-width: 420px; /* change width as needed */
+  max-width: 980px;
+  margin: 0 auto;
+  align-items: stretch;  /* allow rows to span the full width */
 }
+
 
 /* conformation styles */
 .conformation-page {
@@ -104,4 +85,83 @@
     font-size:25px;
     padding-bottom: 10px;
 }
+
+
+
+
+/* Layout rows */
+.form-row {
+  display: flex;
+  gap: 20px;
+  /* center the pair of inputs as a group */
+  justify-content: center;
+  width: 100%;
+}
+
+/* Imported row: position date/guests and time/occasion at quarter points */
+.form-row.imported-row {
+  align-items: flex-start; /* allow booking-info grid to align properly */
+  /* keep imported row spaced (booking-info + phone) across the row
+     so the special 33% positioning for booking-info continues to work */
+  justify-content: space-between;
+}
+
+.booking-info {
+  /* Position the two columns so their approximate centers sit at 33% and 67%
+     from the left. We make the block 34% wide and offset it 33% from the left
+     so the left edge is at 33% and the right edge is at ~67% of the container. */
+  width: 34%;
+  margin-left: 33%;
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* left column (date/guests), right column (time/occasion) */
+  gap: 0.25rem 1rem;
+  color: #ffffff; /* ensure visible on dark background */
+}
+
+.booking-info p { margin: 0.15rem 0; }
+
+/* Put Date and Guests in the left column */
+.booking-info p:nth-child(1),
+.booking-info p:nth-child(4) {
+  grid-column: 1;
+  text-align: left;
+}
+
+/* Put Time and Occasion in the right column and align them right */
+.booking-info p:nth-child(2),
+.booking-info p:nth-child(3) {
+  grid-column: 2;
+  text-align: right;
+}
+
+/* Small screens: stack everything and remove margins */
+@media (max-width: 720px) {
+  .booking-info {
+    width: 100%;
+    margin-left: 0;
+    grid-template-columns: 1fr;
+  }
+  .booking-info p:nth-child(2), .booking-info p:nth-child(3) { text-align: left; }
+  .form-row { gap: 12px; }
+}
+
+/* Summary block below */
+.booking-summary {
+  background-color: #f4f4f4;
+  padding: 10px;
+  border-radius: 8px;
+  width: 100%;
+}
+
+.booking-summary p {
+  margin: 4px 0;
+  font-size: 14px;
+}
+
+
+.booking .input-booking {
+  width: 200px; /* override the .form-group input width */
+  height: 70px;
+}
+
 

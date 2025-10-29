@@ -4,84 +4,21 @@ import * as Yup from 'yup';
 import { useNavigate } from 'react-router-dom';
 import '../Css/bookingForm.css';
 import { useFormik } from "formik";
+import { useLocation } from "react-router-dom";
 
 
 const BookingForm = () => {
     // helper to get today's date in YYYY-MM-DD for the date input
-    const getTodaysDate = () => {
-        const d = new Date();
-        const yyyy = d.getFullYear();
-        const mm = String(d.getMonth() + 1).padStart(2, '0');
-        const dd = String(d.getDate()).padStart(2, '0');
-        return `${yyyy}-${mm}-${dd}`;
-    };
-
-    const initialDate = getTodaysDate();
+    const { state } = useLocation();
     const navigate = useNavigate();
 
     // availableTimes is loaded via fetchData so it can vary by date
     const [availableTimes, setAvailableTimes] = useState([]);
     const partyOccasion = ['Birthday', 'Anniversary', 'Other'];
 
-    // Simulated fetch function that returns available times for a given date.
-    // Replace this with a real API call (fetch/axios) as needed.
-    const fetchData = (selectedDate) => {
-        const baseTimes = ['17:00', '18:00', '19:00', '20:00', '21:00', '22:00'];
-        return new Promise((resolve) => {
-            // simple deterministic filter based on day-of-month so results vary by date
-            const dateToUse = selectedDate || getTodaysDate();
-            const day = new Date(dateToUse).getDate();
-            const filtered = baseTimes.filter((_, i) => ((i + day) % 2) === 0);
-            // ensure there is at least one time available
-            const result = filtered.length ? filtered : baseTimes;
-            setTimeout(() => resolve(result), 200);
-        });
-    };
 
-    // when the component mounts, fetch available times for today's date
-    useEffect(() => {
-        let mounted = true;
-        fetchData(initialDate).then((times) => {
-            if (mounted) setAvailableTimes(times);
-        });
-        return () => { mounted = false; };
-    }, []);
-
-    // helper used from inside Formik to refresh available times when date changes
-    const refreshTimesForDate = async (selectedDate, setFieldValue) => {
-        const times = await fetchData(selectedDate);
-        setAvailableTimes(times);
-        if (typeof setFieldValue === 'function') setFieldValue('time', '');
-    };
-
-    // Yup validation schema (no past dates)
-    const minDate = new Date();
-    minDate.setHours(0, 0, 0, 0);
     const validationSchema = Yup.object().shape({
-        date: Yup.date()
-            .transform((value, originalValue) => {
-                // If already a Date instance, keep it
-                if (originalValue instanceof Date && !isNaN(originalValue)) return originalValue;
-                if (!originalValue) return null;
-                // If the original value is an ISO datetime or already contains a time
-                if (typeof originalValue === 'string' && (originalValue.includes('T') || originalValue.endsWith('Z'))) {
-                    const parsed = new Date(originalValue);
-                    return isNaN(parsed.getTime()) ? null : parsed;
-                }
-                // For plain YYYY-MM-DD strings from date inputs, append time to avoid timezone shift
-                if (typeof originalValue === 'string') {
-                    const parsed = new Date(originalValue + 'T00:00:00');
-                    return isNaN(parsed.getTime()) ? null : parsed;
-                }
-                return null;
-            })
             //error message for invalid infomation
-            .typeError('Invalid date')
-            .required('Required')
-            .min(minDate, 'Date cannot be in the past'),
-        time: Yup.string().required('Please select a time'),
-        guests: Yup.number().required('Required').min(1, 'At least 1 guest').max(10, 'At most 10 guests'),
-        occasion: Yup.string().required('Please select an occasion'),
         name: Yup.string().required('Name is required').min(2, 'Name is too short'),
         email: Yup.string().required('Email is required').email('Invalid email'),
         phone: Yup.string().required('Phone is required').matches(/^[0-9+()\-\s]{7,}$/, 'Invalid phone number')
@@ -95,10 +32,6 @@ const BookingForm = () => {
     // Use Formik for form state and validation
     const formik = useFormik({
         initialValues: {
-            date: initialDate,
-            time: '',
-            guests: 1,
-            occasion: 'Birthday',
             name: '',
             email: '',
             phone: ''
@@ -140,41 +73,55 @@ const BookingForm = () => {
         // booking form
         <div className="booking-container" >
             <h1 style={{ textAlign: 'center', margin: '1rem 0', fontSize: '20px' }}><b>Reserve a Table</b></h1>
-            <form className="booking-contact" onSubmit={formik.handleSubmit} style={{ display: 'grid', maxWidth: '400px', gap: '8px' }}>
-                {/* Contact information inputs */}
-                <FormLabel htmlFor="Name">Name</FormLabel>
+           <form className="booking-page" onSubmit={formik.handleSubmit}>
+            {/* Row 1: Name + Email */}
+            <div className="form-row">
+            <div className="form-group">
+                <FormLabel htmlFor="name">Name</FormLabel>
                 <Input
-                    className="input-booking"
-                    type="text"
-                    id="name"
-                    name="name"
-                    placeholder="Your Name"
-                    value={formik.values.name}
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
+                type="text"
+                id="name"
+                name="name"
+                placeholder="Your Name"
+                
+                value={formik.values.name}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
                 />
-                {/* error message */}
-                {formik.touched.name && formik.errors.name && <div style={{ color: 'red', fontSize: '12px' }}>{formik.errors.name}</div>}
+                {formik.touched.name && formik.errors.name && (
+                <div className="error">{formik.errors.name}</div>
+                )}
+            </div>
 
-                {/* Email input */}
-                <FormLabel htmlFor="Email">Email</FormLabel>
+            <div className="form-group">
+                <FormLabel htmlFor="email">Email</FormLabel>
                 <Input
-                    className="input-booking"
-                    type="email"
-                    id="email"
-                    name="email"
-                    placeholder="Your Email"
-                    value={formik.values.email}
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Your Email"
+                value={formik.values.email}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
                 />
-                {/* error message */}
-                {formik.touched.email && formik.errors.email && <div style={{ color: 'red', fontSize: '12px' }}>{formik.errors.email}</div>}
+                {formik.touched.email && formik.errors.email && (
+                <div className="error">{formik.errors.email}</div>
+                )}
+                </div>
+            </div>
 
-                {/* Phone input */}
-                <FormLabel htmlFor="Phone">Phone Number</FormLabel>
+            {/* Row 2: Imported data + phone number */}
+            <div className="form-row imported-row">
+                <div className="booking-info">
+                <p><strong>Date:</strong> {state?.date}</p>
+                <p><strong>Time:</strong> {state?.time}</p>
+                <p><strong>Occasion:</strong> {state?.occasion}</p>
+                <p><strong>Guests:</strong> {state?.guests}</p>
+                </div>
+
+                <div className="form-group phone-group">
+                <FormLabel htmlFor="phone">Phone Number</FormLabel>
                 <Input
-                    className="input-booking"
                     type="tel"
                     id="phone"
                     name="phone"
@@ -183,18 +130,17 @@ const BookingForm = () => {
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                 />
-                {/* error message */}
-                {formik.touched.phone && formik.errors.phone && <div style={{ color: 'red', fontSize: '12px' }}>{formik.errors.phone}</div>}
+                {formik.touched.phone && formik.errors.phone && (
+                    <div className="error">{formik.errors.phone}</div>
+                )}
+                </div>
+            </div>
 
-                <Button
-                    type="submit"
-                    style={buttonStyle}
-                    onClick={() => {
-                        setClicked(true);
-                        setTimeout(() => setClicked(false), 200);
-                    }}
-                >Make Your reservation</Button>
+            <Button type="submit" className="reserve-btn">
+                Make Your Reservation
+            </Button>
             </form>
+
                        {/* conformation pop up */}
             {showConfirm && (
                 <div style={{
