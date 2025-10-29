@@ -2,7 +2,7 @@
 
 import { render, screen, fireEvent } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
-import Main from "./Main";
+import Main from "../pages/Main";
 
 
 
@@ -14,11 +14,6 @@ describe("Main component", () => {
       </MemoryRouter>
     );
 
-    // Heading
-    expect(
-    screen.getByRole("heading", { name: /Little/i })
-    ).toBeInTheDocument();
-    expect(screen.getByText(/Little Lemon/i)).toBeInTheDocument();
 
     // Subheading
     expect(

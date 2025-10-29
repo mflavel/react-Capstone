@@ -1,4 +1,4 @@
-import React from "react";
+
 import { render, screen, fireEvent } from "@testing-library/react";
 
 // Mock Chakra UI components
@@ -18,7 +18,7 @@ jest.mock("react-router-dom", () => ({
   useLocation: () => ({ state: null }),
 }));
 
-import BookingForm from "./pages/BookingForm"; // adjust path
+import BookingForm from "../pages/BookingForm"; // adjust path
 
 describe("BookingForm validation", () => {
   test("shows error messages when required fields are empty", async () => {

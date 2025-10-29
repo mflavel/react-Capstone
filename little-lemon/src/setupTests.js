@@ -17,6 +17,7 @@ jest.mock("@chakra-ui/react", () => {
     Text: ({ children }) => <p>{children}</p>,
     HStack: ({ children, ...props }) => <div {...props}>{children}</div>,
     VStack: ({ children, ...props }) => <div {...props}>{children}</div>,
+    Image: (props) => <img {...props} data-testid="chakra-image" />,
     // Add more mocks if your tests need them
   };
 });

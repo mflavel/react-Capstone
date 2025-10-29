@@ -1,11 +1,11 @@
 import Header from './Header';
-import Nav from './Nav';
-import Footer from './Footer';
-import Main from './Main';
-import Menu from './Menu';
-import Reservations from './Reservations';
-import OrderOnline from './OrderOnline';
-import Login from './Login';
+import Nav from './pages/Nav';
+import Footer from './pages/Footer';
+import Main from './pages/Main';
+import Menu from './pages/Menu';
+import Reservations from './pages/Reservations';
+import OrderOnline from './pages/OrderOnline';
+import Login from './pages/Login';
 import Conformation from './pages/Conformation';
 import { ChakraProvider } from '@chakra-ui/react';
 import { Routes, Route } from 'react-router-dom';

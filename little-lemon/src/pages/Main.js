@@ -1,10 +1,10 @@
-import restauranfood from "./images/restauranfood.jpg";
-import greaksalad from "./images/greeksalad.jpg";
-import bruchetta from "./images/bruchetta.svg";
-import lemondesser from "./images/lemondessert.jpg";
-import bear from "./images/bear avatar.png";
-import panda from "./images/panda avatar.png";
-import wolf from "./images/wolf avatar.png";
+import restauranfood from "../images/restauranfood.jpg";
+import greaksalad from "../images/greeksalad.jpg";
+import bruchetta from "../images/bruchetta.svg";
+import lemondesser from "../images/lemondessert.jpg";
+import bear from "../images/bear avatar.png";
+import panda from "../images/panda avatar.png";
+import wolf from "../images/wolf avatar.png";
 
 import { VStack, HStack } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
@@ -39,7 +39,7 @@ const Main = () => {
       }
     }
   }, [location.pathname, location.hash, location.state]);
-  
+
   return (
         <>
             <div className="hero">

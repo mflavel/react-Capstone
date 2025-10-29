@@ -1,6 +1,6 @@
 import { HStack, Box, Image } from "@chakra-ui/react";
-import MarioAdiranb from "./images/Mario and Adrian b.jpg";
-import MarioAndiranA from "./images/Mario and Adrian A.jpg";  
+import MarioAdiranb from "../images/Mario and Adrian b.jpg";
+import MarioAndiranA from "../images/Mario and Adrian A.jpg";
 
 const About = () => {
   return (
@@ -8,7 +8,7 @@ const About = () => {
       <HStack
         className="about-us-inner"
         justifyContent="space-between"
-        alignItems="center"     // ✅ centers vertically
+        alignItems="center"     // centers vertically
         spacing={10}
         px={12}                 // optional: adds left/right padding
       >

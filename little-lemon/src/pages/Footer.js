@@ -1,6 +1,6 @@
 import { HStack, VStack } from "@chakra-ui/react";
-import logo from "./images/Logo .svg";
-import { Link, useLocation } from "react-router-dom";
+import logo from "../images/Logo .svg";
+import {useLocation } from "react-router-dom";
 
 
 const Footer = () => {

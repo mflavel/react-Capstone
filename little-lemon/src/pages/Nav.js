@@ -1,4 +1,4 @@
-import logo from "./images/Logo .svg";
+import logo from "../images/Logo .svg";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const Nav = () => {
