@@ -1,10 +1,52 @@
-/* Booking form layout */
-.booking-container {
+
+.booking{
+  background-color:  #495e57;
+  padding: 20px
+}
+
+.booking input,
+.booking select,
+.booking textarea {
+  background-color: #ffffff !important; /* white background */
+  color: #000; /* black text */
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 8px;
+}
+
+.booking .chakra-form__label {
+  font-size: 18px !important;
+  font-weight: 600; /* slightly bold */
+  color: #ffffff; /* optional */
+}
+/* Each pair of fields on one row */
+.form-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem; /* space between the two fields */
+  width: 100%;
+}
+
+/* Each field’s container */
+.form-group {
+  flex: 1;              /* each takes up equal space */
   display: flex;
   flex-direction: column;
-  align-items: center; /* centers heading and form horizontally */
-  background-color: #FBDABB;
+  margin: 50px;
 }
+
+/* Ensure inputs/selects stretch full width */
+.form-group input,
+.form-group select {
+  width: 100%;
+}
+
+/* Optional: small red error text */
+.error {
+  color: red;
+  font-size: 12px;
+}
+
 
 /* force inputs & selects to keep white background */
 .booking-container input,
@@ -26,13 +68,14 @@
 }
 
 .booking-page {
-  width: 100%;
-  display: grid;
-  gap: 8px;
-  background: transparent;
   display: flex;
-  align-items: center;     /* vertical centering */
+  flex-direction: column; /* stack rows vertically */
+  gap: 1rem;
+  align-items: center;
+  background: transparent;
+  width: 100%;
 }
+
 
 /* keep form a reasonable width */
 .booking-page form {
@@ -61,3 +104,4 @@
     font-size:25px;
     padding-bottom: 10px;
 }
+

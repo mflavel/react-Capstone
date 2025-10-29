@@ -140,74 +140,7 @@ const BookingForm = () => {
         // booking form
         <div className="booking-container" >
             <h1 style={{ textAlign: 'center', margin: '1rem 0', fontSize: '20px' }}><b>Reserve a Table</b></h1>
-            <form className="booking-page" onSubmit={formik.handleSubmit} style={{ display: 'grid', maxWidth: '400px', gap: '8px' }}>
-                
-                {/* Date input */}
-                <FormLabel htmlFor="res-date">Choose date</FormLabel>
-                <Input
-                    className="input-booking"
-                    type="date"
-                    id="date"
-                    name="date"
-                    value={formik.values.date}
-                    onChange={(e) => { formik.handleChange(e); refreshTimesForDate(e.target.value, formik.setFieldValue); }}
-                    onBlur={formik.handleBlur}
-                />
-                {/* error message */}
-                {formik.touched.date && formik.errors.date && <div style={{ color: 'red', fontSize: '12px' }}>{formik.errors.date}</div>}
-
-                {/* Time select */}
-                <FormLabel htmlFor="res-time">Choose time</FormLabel>
-                <Select
-                    className="input-booking"
-                    id="time"
-                    name="time"
-                    placeholder="Select time"
-                    value={formik.values.time}
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                >
-                    {availableTimes.map((timeOption) => (
-                        <option key={timeOption} value={timeOption}>{timeOption}</option>
-                    ))}
-                </Select>
-                {/* error message */}
-                {formik.touched.time && formik.errors.time && <div style={{ color: 'red', fontSize: '12px' }}>{formik.errors.time}</div>}
-
-                {/* Number of guests input */}
-                <FormLabel htmlFor="guests">Number of guests</FormLabel>
-                <Input
-                    className="input-booking"
-                    type="number"
-                    placeholder="1"
-                    min="1"
-                    max="10"
-                    id="guests"
-                    name="guests"
-                    value={formik.values.guests}
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                />
-                {/* error message */}
-                {formik.touched.guests && formik.errors.guests && <div style={{ color: 'red', fontSize: '12px' }}>{formik.errors.guests}</div>}
-
-                {/* Occasion select */}
-                <FormLabel htmlFor="occasion">Occasion</FormLabel>
-                <Select
-                    className="input-booking"
-                    id="occasion"
-                    name="occasion"
-                    value={formik.values.occasion}
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                >
-                    {partyOccasion.map((partyOption) => (
-                        <option key={partyOption} value={partyOption}>{partyOption}</option>
-                    ))}
-                </Select>
-                {/* error message */}
-                {formik.touched.occasion && formik.errors.occasion && <div style={{ color: 'red', fontSize: '12px' }}>{formik.errors.occasion}</div>}
-
+            <form className="booking-contact" onSubmit={formik.handleSubmit} style={{ display: 'grid', maxWidth: '400px', gap: '8px' }}>
                 {/* Contact information inputs */}
                 <FormLabel htmlFor="Name">Name</FormLabel>
                 <Input

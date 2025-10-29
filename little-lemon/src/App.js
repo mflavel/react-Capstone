@@ -7,6 +7,7 @@ import Reservations from './pages/Reservations';
 import OrderOnline from './pages/OrderOnline';
 import Login from './pages/Login';
 import Conformation from './pages/Conformation';
+import BookingForm from './pages/BookingForm';
 import { ChakraProvider } from '@chakra-ui/react';
 import { Routes, Route } from 'react-router-dom';
 
@@ -27,6 +28,7 @@ function App() {
             <Route path="/order-online" element={<OrderOnline />} />
             <Route path="/conformation" element={<Conformation />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/bookingform" element={<BookingForm />} />
         </Routes>
         <Footer />
       </ChakraProvider>
