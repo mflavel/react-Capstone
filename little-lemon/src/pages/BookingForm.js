@@ -18,7 +18,7 @@ const BookingForm = () => {
 
 
     const validationSchema = Yup.object().shape({
-            //error message for invalid infomation
+        //error message for invalid infomation
         name: Yup.string().required('Name is required').min(2, 'Name is too short'),
         email: Yup.string().required('Email is required').email('Invalid email'),
         phone: Yup.string().required('Phone is required').matches(/^[0-9+()\-\s]{7,}$/, 'Invalid phone number')
@@ -46,7 +46,7 @@ const BookingForm = () => {
 
 
     //confermation dialog functions for confirming
-   const confirmReservation = () => {
+    const confirmReservation = () => {
         if (!pendingPayload) return;
         console.log('Reservation submitted:', pendingPayload);
         setShowConfirm(false);
@@ -59,89 +59,84 @@ const BookingForm = () => {
         setShowConfirm(false);
     };
 
-    const buttonStyle = {
-        backgroundColor: clicked ? '#495E57' : '#F4CE14',
-        color: 'black',
-        fontWeight: 'bold',
-        padding: '8px',
-        border: 'none',
-        borderRadius: '4px',
-        cursor: 'pointer'
+    const backReservation = () => {
+        navigate('/reservations');
     };
 
     return (
         // booking form
         <div className="booking-container" >
             <h1 style={{ textAlign: 'center', margin: '1rem 0', fontSize: '20px' }}><b>Reserve a Table</b></h1>
-           <form className="booking-page" onSubmit={formik.handleSubmit}>
-            {/* Row 1: Name + Email */}
-            <div className="form-row">
-            <div className="form-group">
-                <FormLabel htmlFor="name">Name</FormLabel>
-                <Input
-                type="text"
-                id="name"
-                name="name"
-                placeholder="Your Name"
-                
-                value={formik.values.name}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                />
-                {formik.touched.name && formik.errors.name && (
-                <div className="error">{formik.errors.name}</div>
-                )}
-            </div>
+            <form className="booking-page" onSubmit={formik.handleSubmit}>
+                {/* Row 1: Name + Email */}
+                <div className="form-booking-row">
+                    <div className="form-booking-group">
+                        <FormLabel htmlFor="name">Name</FormLabel>
+                        <Input
+                            type="text"
+                            id="name"
+                            name="name"
+                            placeholder="Your Name"
+                            value={formik.values.name}
+                            onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}
+                        />
+                        {formik.touched.name && formik.errors.name && (
+                            <div className="error">{formik.errors.name}</div>
+                        )}
+                    </div>
 
-            <div className="form-group">
-                <FormLabel htmlFor="email">Email</FormLabel>
-                <Input
-                type="email"
-                id="email"
-                name="email"
-                placeholder="Your Email"
-                value={formik.values.email}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                />
-                {formik.touched.email && formik.errors.email && (
-                <div className="error">{formik.errors.email}</div>
-                )}
-                </div>
-            </div>
-
-            {/* Row 2: Imported data + phone number */}
-            <div className="form-row imported-row">
-                <div className="booking-info">
-                <p><strong>Date:</strong> {state?.date}</p>
-                <p><strong>Time:</strong> {state?.time}</p>
-                <p><strong>Occasion:</strong> {state?.occasion}</p>
-                <p><strong>Guests:</strong> {state?.guests}</p>
+                    <div className="form-booking-group">
+                        <FormLabel htmlFor="email">Email</FormLabel>
+                        <Input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="Your Email"
+                            value={formik.values.email}
+                            onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}
+                        />
+                        {formik.touched.email && formik.errors.email && (
+                            <div className="error">{formik.errors.email}</div>
+                        )}
+                    </div>
                 </div>
 
-                <div className="form-group phone-group">
-                <FormLabel htmlFor="phone">Phone Number</FormLabel>
-                <Input
-                    type="tel"
-                    id="phone"
-                    name="phone"
-                    placeholder="Your Phone Number"
-                    value={formik.values.phone}
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                />
-                {formik.touched.phone && formik.errors.phone && (
-                    <div className="error">{formik.errors.phone}</div>
-                )}
-                </div>
-            </div>
+                {/* Row 2: Imported data + phone number */}
+                <div className="form-booking-row imported-row">
+                    <div className="booking-info">
+                        <p><strong>Date:</strong> {state?.date}</p>
+                        <p><strong>Time:</strong> {state?.time}</p>
+                        <p><strong>Guests:</strong> {state?.guests}</p>
+                        <p><strong>Occasion:</strong> {state?.occasion}</p>
+                    </div>
 
-            <Button type="submit" className="reserve-btn">
-                Make Your Reservation
-            </Button>
+                    <div className="form-booking-group phone-group">
+                        <FormLabel htmlFor="phone">Phone Number</FormLabel>
+                        <Input
+                            type="tel"
+                            id="phone"
+                            name="phone"
+                            placeholder="Your Phone Number"
+                            value={formik.values.phone}
+                            onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}
+                        />
+                        {formik.touched.phone && formik.errors.phone && (
+                            <div className="error">{formik.errors.phone}</div>
+                        )}
+                    </div>
+                </div>
+                <div className="button-group">
+                    <button type="button" className="reserve-button" onClick={backReservation} >Change Reservation</button>
+                    <button type="submit" className="reserve-button" id="button_submit1">
+                        Make Your Reservation
+                    </button>
+                </div>
             </form>
 
-                       {/* conformation pop up */}
+            {/* conformation pop up */}
             {showConfirm && (
                 <div style={{
                     position: 'fixed',
