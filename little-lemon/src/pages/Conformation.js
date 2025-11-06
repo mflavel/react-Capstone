@@ -6,7 +6,7 @@ const Conformation = () => {
     const { state } = useLocation();
     const { date, time, guests, occasion,name, email, phone} = state || {};
     const navigate = useNavigate();
-    
+
     return (
         <div className='conformation-page'>
             {/* conformation infomation page */}

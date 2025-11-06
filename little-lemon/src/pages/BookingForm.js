@@ -25,13 +25,16 @@ const BookingForm = () => {
     });
 
 
-    const [clicked, setClicked] = useState(false);
     const [showConfirm, setShowConfirm] = useState(false);
     const [pendingPayload, setPendingPayload] = useState(null);
 
     // Use Formik for form state and validation
     const formik = useFormik({
         initialValues: {
+            date: state?.date || '',
+            time: state?.time || '',
+            guests: state?.guests || '',
+            occasion: state?.occasion || '',
             name: '',
             email: '',
             phone: ''

@@ -149,6 +149,7 @@
 
 
 
+
 /*Booking Form Page Edits*/
 .booking-container {
   background-color: #495e57;
@@ -217,4 +218,11 @@
   display: flex;
   gap: 10px;
   flex-direction: row;
+}
+
+
+/* Confirmation Page Edits */
+.conformation-page {
+  background-color: #495e57;
+  color:#ccc;
 }

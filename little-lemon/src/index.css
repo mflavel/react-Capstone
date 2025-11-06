@@ -4,79 +4,7 @@
   grid-template-rows: 2fr 1fr;
 }
 
-.Nav {
-  grid-column: 1 / 4;
-  grid-row: 1 / 2;
-  padding: 0.5rem 1rem;
-}
 
-/* horizontal navbar */
-.Nav a:hover{
-  background-color: #f4ce14;
-  border-radius: 6px;
-}
-
-.link-button{
-  grid-column: 1 / 4;
-  grid-row: 1 / 2;
-  padding: 0.20rem .5rem;
-  font: inherit;
-}
-
-.link-button:hover{
-  background-color: #f4ce14;
-  border-radius: 6px;
-}
-
-.Nav .site-inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  max-width: 1000px;
-  margin: 0 auto;
-  width: 100%;
-}
-
-.Nav img {
-  height: 48px;
-  width: auto;
-}
-
-.Nav ul {
-  list-style: none;
-  display: flex;
-  gap: 1rem;
-  margin: 0;
-  padding: 0;
-  align-items: center;
-}
-
-.Nav a {
-  text-decoration: none;
-  padding: 0.25rem 0.5rem;
-  color:black;
-}
-
-.nav-links .active {
-  background-color: #495e57; /* green */
-  color: white;
-  border-radius: 6px;
-  padding: 0.25rem 0.6rem;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-@media (max-width: 600px) {
-  .Nav ul {
-    gap: 0.5rem;
-    font-size: 0.9rem;
-  }
-}
-h2{
-    font-size: 1.5rem;
-}
 
 /* Main Style */
 /* Hero image fixed size */

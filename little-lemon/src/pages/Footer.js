@@ -1,5 +1,5 @@
 import { HStack, VStack } from "@chakra-ui/react";
-import logo from "../images/Logo .svg";
+import logo from "../images/Logo.svg";
 import {useLocation } from "react-router-dom";
 
 

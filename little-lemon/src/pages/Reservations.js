@@ -87,11 +87,6 @@ const Reservation = () => {
         occasion: Yup.string().required('Please select an occasion'),
     });
 
-
-    const [clicked, setClicked] = useState(false);
-    const [showConfirm, setShowConfirm] = useState(false);
-    const [pendingPayload, setPendingPayload] = useState(null);
-
     // Use Formik for form state and validation
     const formik = useFormik({
         initialValues: {
@@ -102,7 +97,7 @@ const Reservation = () => {
         },
         validationSchema,
         onSubmit: (values) => {
-            navigate("/BookingForm", { state: values }); // 👈 send data here
+            navigate("/BookingForm", { state: values });
         },
     });
 
