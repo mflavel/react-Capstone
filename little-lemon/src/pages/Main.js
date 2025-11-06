@@ -11,6 +11,7 @@ import { Link } from 'react-router-dom';
 import About from "./About";
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import "../Css/main.css"
 
 
 
